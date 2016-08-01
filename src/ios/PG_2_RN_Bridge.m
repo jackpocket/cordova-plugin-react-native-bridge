@@ -6,12 +6,12 @@
   // Member variables go here.
 }
 
-- (void)invokeAcion:(CDVInvokedUrlCommand*)command;
+- (void)invokeAction:(CDVInvokedUrlCommand*)command;
 @end
 
 @implementation PG_2_RN_Bridge
 
-- (void)invokeAcion:(CDVInvokedUrlCommand*)command
+- (void)invokeAction:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* pluginResult = nil;
     NSString* echo = [command.arguments objectAtIndex:0];
