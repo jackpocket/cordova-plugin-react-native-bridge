@@ -2,6 +2,7 @@
 
 #import <Cordova/CDV.h>
 #import "MainViewController.h"
+// Use a more dynamic path
 #import "/Users/gabrieltroia/Projects/jackpocket_reactnative/node_modules/react-native/React/Base/RCTRootView.h"
 
 @interface PG_2_RN_Bridge : CDVPlugin {
@@ -9,6 +10,7 @@
 }
 
 - (void)invokeAction:(CDVInvokedUrlCommand*)command;
+- (void)revokeAction:(CDVInvokedUrlCommand*)command;
 @end
 
 @implementation PG_2_RN_Bridge
