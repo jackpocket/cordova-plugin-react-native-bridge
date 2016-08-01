@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-plugin-pg2rn-bridge" version="0.0.1">
+   <name>PG_2_RN_Bridge</name>
+   <js-module name="PG_2_RN_Bridge" src="www/PG_2_RN_Bridge.js">
+      <clobbers target="cordova.plugins.PG_2_RN_Bridge" />
+   </js-module>
+   <platform name="ios">
+      <config-file parent="/*" target="config.xml">
+         <feature name="PG_2_RN_Bridge">
+            <param name="ios-package" value="PG_2_RN_Bridge" />
+         </feature>
+      </config-file>
+      <source-file src="src/ios/PG_2_RN_Bridge.m" />
+   </platform>
+</plugin>
