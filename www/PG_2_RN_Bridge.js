@@ -1,4 +1,11 @@
 // TODO: add active status. don't let it be invoked twice!
+// TODO: So far I only solved half of the data binding problem:
+//      send props up to bottom (from Native to ReactNative)
+//     The other hald is updating the parent(native) component via callbacks
+//     For this I would need `native modules`. See:
+//      https://facebook.github.io/react-native/docs/communication-ios.html#properties
+//      https://facebook.github.io/react-native/docs/native-modules-ios.html#native-modules
+//      https://facebook.github.io/react-native/docs/native-components-ios.html#native-ui-components 
 
 var exec = require('cordova/exec');
 
