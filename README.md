@@ -1,5 +1,4 @@
-# pg2rn_bridge
-Phonegap to ReactNative Bridge
+# Phonegap to ReactNative Bridge
 
 This plugin is intended to offer a bridge between Phonegap and React Native for those unfortunate developers
 who cannot justify a complete rewrite, and thus have to take the slower path of incremental migration.
