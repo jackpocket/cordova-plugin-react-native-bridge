@@ -17,7 +17,6 @@
 
 - (void)invokeAction:(CDVInvokedUrlCommand*)command
 {
-    CDVPluginResult* pluginResult = nil;
     NSDictionary* echo = [command.arguments objectAtIndex:0];
 
     if (echo != nil) {
@@ -31,32 +30,43 @@
                               launchOptions    : nil];
         UIViewController *vc = [[UIViewController alloc] init];
         vc.view = rootView;
-        [self.viewController presentViewController:vc animated:YES completion:nil];
-        
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:echo];
+        vc.view.backgroundColor = [UIColor clearColor];
+
+        PG_2_RN_Bridge* __weak weakSelf = self;
+        [self.viewController presentViewController:vc animated:YES completion:^{
+            CDVPluginResult* pluginResultOK = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+            [weakSelf.commandDelegate sendPluginResult:pluginResultOK
+                                            callbackId:command.callbackId];
+            NSLog(@"PG_2_RN_Bridge: VIEW CONTROLLER LOADED AFTER!");
+        }];
     } else {
         NSLog(@"PG_2_RN_Bridge: invokeAcion Failed!");
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+        CDVPluginResult* pluginResultERROR = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+        [self.commandDelegate sendPluginResult:pluginResultERROR 
+                                    callbackId:command.callbackId];
     }
-
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 - (void)revokeAction:(CDVInvokedUrlCommand*)command
 {
-    CDVPluginResult* pluginResult = nil;
     NSDictionary* echo = [command.arguments objectAtIndex:0];
 
     if (echo != nil) {
         NSLog(@"PG_2_RN_Bridge: revokeAcion Succeeded %@", echo);
         
-        [self.viewController dismissViewControllerAnimated:YES completion:Nil];
+        PG_2_RN_Bridge* __weak weakSelf = self;
+        [self.viewController dismissViewControllerAnimated:YES completion:^{
+            CDVPluginResult* pluginResultOK = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+            [weakSelf.commandDelegate sendPluginResult:pluginResultOK
+                                            callbackId:command.callbackId];
+            NSLog(@"PG_2_RN_Bridge: VIEW CONTROLLER DISMISSED AFTER!");
+        }];
     } else {
         NSLog(@"PG_2_RN_Bridge: revokeAction Failed!");
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+        CDVPluginResult* pluginResultERROR = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+        [self.commandDelegate sendPluginResult:pluginResultERROR
+                                    callbackId:command.callbackId];
     }
-
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 @end

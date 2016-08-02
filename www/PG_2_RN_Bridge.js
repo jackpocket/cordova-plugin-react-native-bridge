@@ -1,3 +1,5 @@
+// TODO: add active status. don't let it be invoked twice!
+
 var exec = require('cordova/exec');
 
 exports.invokeAction = function (arg0, success, error) {
